@@ -119,12 +119,12 @@ function ipfsify(packageName, callback) {
             let oldCallback = callback;
             callback = (err, res) => {
                 process.chdir("..");
-                //fs.remove(dir, err2 => {
-                //    if (err2) {
-                //        console.error("Warning: could not delete temporary directory");
-                //    }
+                fs.remove(dir, err2 => {
+                    if (err2) {
+                        console.error("Warning: could not delete temporary directory");
+                    }
                     oldCallback(err, res);
-                //});
+                });
             };
             process.chdir(dir);
             npm.load({
