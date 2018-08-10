@@ -19,18 +19,30 @@ function ipfsifyPackage(nodeModulesDir, packageName, packageMap, callback) {
                     if (packageMap[dependencies[i]]) {
                         loop(i + 1);
                     } else {
-                        fs.access(path.join(submodulesDir, dependencies[i]), fs.constants.F_OK, err => {
-                            ipfsifyPackage(err ? nodeModulesDir : submodulesDir, dependencies[i], packageMap, (err, pkgs) => {
-                                if (pkgs) {
-                                    packages.push(...pkgs);
-                                }
+                        function loop2(dir) {
+                            fs.access(path.join(dir, dependencies[i]), fs.constants.F_OK, err => {
                                 if (err) {
-                                    callback(err, packages);
+                                    let parent = path.dirname(path.dirname(dir));
+                                    if (path.basename(parent) === "node_modules") {
+                                        loop2(parent);
+                                    } else {
+                                        callback(err, packages);
+                                    }
                                 } else {
-                                    loop(i + 1);
+                                    ipfsifyPackage(dir, dependencies[i], packageMap, (err, pkgs) => {
+                                        if (pkgs) {
+                                            packages.push(...pkgs);
+                                        }
+                                        if (err) {
+                                            callback(err, packages);
+                                        } else {
+                                            loop(i + 1);
+                                        }
+                                    });
                                 }
                             });
-                        });
+                        }
+                        loop2(submodulesDir);
                     }
                 } else {
                     let modDir = path.join(nodeModulesDir, packageName);
