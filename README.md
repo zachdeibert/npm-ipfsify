@@ -10,16 +10,6 @@ Install npm-ipfsify:
 npm install npm-ipfsify
 ```
 
-Installing from IPFS:
-
-```bash
-cat <<EOF | sudo tee /usr/local/bin/npm-ipfsify
-#!/usr/bin/env node
-require("/ipfs/QmdTNmyTusmCj3SsUJWKpVxQofuknVhs237MEDZpKz9MMv/bin/npm-ipfsify.js");
-EOF
-sudo chmod +x /usr/local/bin/npm-ipfsify
-```
-
 Convert package from NPM to IPFS:
 
 ```bash
