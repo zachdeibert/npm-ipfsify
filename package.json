@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "fs-extra": "^7.0.0",
+    "ipfs-api": "^23.0.0",
     "npm": "^6.3.0",
     "recursive-readdir": "^2.2.2"
   }
