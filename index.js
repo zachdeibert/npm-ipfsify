@@ -62,7 +62,7 @@ function ipfsifyPackage(nodeModulesDir, packageName, packageMap, callback) {
                                             if (err) {
                                                 callback(err, packages);
                                             } else {
-                                                let regex = /(require\s*\(\s*['"])([^'"]+)(['"]\s*\))/gm;
+                                                let regex = /(require\s*\(\s*['"])([^'"/]+)(\/?[^'"]*['"]\s*\))/gm;
                                                 let match;
                                                 while (match = regex.exec(data)) {
                                                     if (packageMap[match[2]]) {
