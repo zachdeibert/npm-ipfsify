@@ -25,9 +25,9 @@
     "npm-ipfsify": "bin/npm-ipfsify.js"
   },
   "dependencies": {
-    "fs-extra": "^7.0.0",
-    "ipfs-api": "^23.0.0",
-    "npm": "^6.3.0",
+    "fs-extra": "^9.0.0",
+    "ipfs-api": "^26.1.2",
+    "npm": "^6.14.4",
     "recursive-readdir": "^2.2.2"
   }
 }
